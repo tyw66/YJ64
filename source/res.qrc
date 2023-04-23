@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/basic">
+    <qresource prefix="/">
         <file>bg.jpg</file>
+        <file>data.txt</file>
     </qresource>
 </RCC>
