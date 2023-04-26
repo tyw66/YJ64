@@ -4,7 +4,9 @@
 #include <QString>
 #include <QObject>
 #include <QMap>
-#include "model.h"
+
+#include "diagram.h"
+
 struct DiagramData{
     QString uid;
     QString name;
@@ -22,7 +24,7 @@ public:
 
 
 private:
-    Database();
+    Database(){}
     static Database* m_self;
 
     QMap<QString,DiagramData> m_data;

@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 #include <QString>
+#include "yao.h"
 
 /**
  * @brief 八卦
@@ -29,19 +30,35 @@ enum Diagram8{
 /**
  * @brief 64卦
  */
-class Diagram{
+class Diagram : public QObject{
+    Q_OBJECT
 public:
-    explicit Diagram(Diagram8 up, Diagram8 down);
+    explicit Diagram();
 
+    void change(Diagram8 up, Diagram8 down);
+    void change(const QString& code);
     QString name();
+
+    Yao *getYao(int index);
+
+private slots:
+    void onYaoChanged(int index, bool broken);
+
+
+private:
+    void internalUpdate();
+
+signals:
+    void diagramChanged();
 
 private:
     Diagram8 m_up;
     Diagram8 m_down;
 
+    QVector<int> m_data;//1-阳 0-阴
 
+    QVector<Yao*> m_yaos;
 };
 
-void testDiagram();
 
 #endif // DEFINES_H

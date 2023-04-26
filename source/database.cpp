@@ -12,10 +12,6 @@ Database *Database::inst()
     return m_self;
 }
 
-Database::Database()
-{
-
-}
 void Database::read(const QString &fileName)
 {
     QFile file(fileName);

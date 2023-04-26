@@ -1,11 +1,11 @@
-#include "graphicsitemyao.h"
+#include "yao.h"
 #include <QDebug>
 #include <QPainter>
 #include <QStyle>
 #include <QGraphicsSceneMouseEvent>
 #include <QStyleOptionGraphicsItem>
 
-GraphicsItemYao::GraphicsItemYao(int x, int y)
+Yao::Yao(int x, int y)
 {
     setPos(x,y);
     setZValue((x + y) % 2);
@@ -14,14 +14,15 @@ GraphicsItemYao::GraphicsItemYao(int x, int y)
 
     m_color = QColor("#333");
     m_broken = false;
+    m_index = -1;
 }
 
-QRectF GraphicsItemYao::boundingRect() const
+QRectF Yao::boundingRect() const
 {
     return QRect(0,0,400,40);
 }
 
-void GraphicsItemYao::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Yao::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(widget);
     QColor fillColor = m_color;
@@ -44,10 +45,28 @@ void GraphicsItemYao::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     }
 }
 
-
-void GraphicsItemYao::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Yao::setBroken(bool broken)
 {
-    m_broken = !m_broken;
-    QGraphicsItem::mousePressEvent(event);
+    m_broken = broken;
     update();
+}
+
+
+void Yao::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    bool newStatus = !m_broken;
+    setBroken(newStatus);
+    QGraphicsItem::mousePressEvent(event);
+
+    emit yaoChanged(m_index, newStatus);
+}
+
+int Yao::getIndex() const
+{
+    return m_index;
+}
+
+void Yao::setIndex(int index)
+{
+    m_index = index;
 }

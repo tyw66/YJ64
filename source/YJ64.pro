@@ -11,16 +11,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
     database.h \
-    model.h \
-    graphicsitemyao.h \
+    diagram.h \
     mainwindow.h \
+    yao.h
+
 
 SOURCES += \
     database.cpp \
-    model.cpp \
-    graphicsitemyao.cpp \
+    diagram.cpp \
     main.cpp \
     mainwindow.cpp \
+    yao.cpp
 
 FORMS += \
     mainwindow.ui

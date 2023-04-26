@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QDebug>
-#include "graphicsitemyao.h"
+
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
   ,ui(new Ui::MainWindow)
@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
 void MainWindow::initBackground()
 {
     //初始化背景与场景
@@ -29,9 +30,21 @@ void MainWindow::initBackground()
 void MainWindow::initDiagrams()
 {
     //初始化为乾卦
-    ui->label_name->setText(tr("QianGua"));
+    m_diagram.change("0,0,0,1,1,1");
+    ui->label_name->setText(m_diagram.name());
 
     //从下到上画阳爻
+    for(int i = 0; i < 6; i++){
+        Yao* yao = m_diagram.getYao(i);
+        if(yao){
+            m_scene->addItem(yao);
+        }
+    }
+
+    connect(&m_diagram,SIGNAL(diagramChanged()),
+            this,SLOT(onDiagramChanged()));
+
+/*
     GraphicsItemYao *line1 = new GraphicsItemYao(-200,130);
     m_scene->addItem(line1);
 
@@ -49,5 +62,12 @@ void MainWindow::initDiagrams()
 
     GraphicsItemYao *line6 = new GraphicsItemYao(-200,-170);
     m_scene->addItem(line6);
+*/
 
+}
+
+
+void MainWindow::onDiagramChanged()
+{
+    ui->label_name->setText(m_diagram.name());
 }
