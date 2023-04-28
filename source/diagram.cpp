@@ -202,6 +202,7 @@ void Diagram::internalUpdate()
     else if(strDown == "110"){m_down = Dui;}
     else if(strDown == "111"){m_down = Qian;}
 
+    qDebug() << strUp << strDown;
 }
 
 

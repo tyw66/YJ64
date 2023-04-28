@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QString>
+#include <QDebug>
 
 Database* Database::m_self = NULL;
 Database *Database::inst()
@@ -30,6 +31,7 @@ void Database::read(const QString &fileName)
                 d.name = info[0] + "_" + info[1];
                 d.uid = QString::number(uid);
                 m_data.insert(d.uid,d);
+                qDebug() << d.uid << " " << d.name;
             }
         }
         file.close();
@@ -39,6 +41,7 @@ void Database::read(const QString &fileName)
 
 QString Database::queryDiagramName(Diagram8 up, Diagram8 down)
 {
+    qDebug() << up << down;
     int uidTemp = (int)up * 8 + (int)down;
     QString uid = QString::number(uidTemp);
     if(m_data.contains(uid)){
