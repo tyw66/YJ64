@@ -20,7 +20,8 @@ public:
     static Database* inst();
     void read(const QString& fileName);
 
-    QString queryDiagramName(Diagram8 up, Diagram8 down);
+    QString queryDiagramName(Diagram8 up, Diagram8 down);  //查询名称
+    QString queryDiagramIntro(Diagram8 up, Diagram8 down); //查询卦辞
 
 
 private:

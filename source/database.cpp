@@ -21,17 +21,20 @@ void Database::read(const QString &fileName)
         while(!in.atEnd()){
             QString line = in.readLine();
             QStringList info = line.split(' ', QString::SkipEmptyParts);
-            if(info.size() == 4){
+            if(info.size() == 5){
 
-                QString up = info[2];
-                QString down = info[3];
+                QString up = info[2];           //上卦
+                QString down = info[3];         //下卦
                 int uid = up.toInt() * 8 + down.toInt();
 
+                QString guaci = info[4];         //卦辞
+
                 DiagramData d;
-                d.name = info[0] + "_" + info[1];
                 d.uid = QString::number(uid);
+                d.name = info[0] + "_" + info[1];
+                d.guaci = guaci;
                 m_data.insert(d.uid,d);
-                qDebug() << d.uid << " " << d.name;
+                qDebug() << d.uid << " " << d.name << d.guaci;
             }
         }
         file.close();
@@ -46,6 +49,19 @@ QString Database::queryDiagramName(Diagram8 up, Diagram8 down)
     QString uid = QString::number(uidTemp);
     if(m_data.contains(uid)){
         return m_data[uid].name;
+    }
+    else{
+        return "";
+    }
+}
+
+QString Database::queryDiagramIntro(Diagram8 up, Diagram8 down)
+{
+    qDebug() << up << down;
+    int uidTemp = (int)up * 8 + (int)down;
+    QString uid = QString::number(uidTemp);
+    if(m_data.contains(uid)){
+        return m_data[uid].guaci;
     }
     else{
         return "";

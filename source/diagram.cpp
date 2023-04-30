@@ -154,6 +154,12 @@ QString Diagram::name()
     return name + "卦";
 }
 
+QString Diagram::guaci()
+{
+    QString guaci = Database::inst()->queryDiagramIntro(m_up,m_down);
+    return guaci;
+}
+
 Yao* Diagram::getYao(int index)
 {
     if(index < 0){

@@ -38,6 +38,7 @@ public:
     void change(Diagram8 up, Diagram8 down);
     void change(const QString& code);
     QString name();
+    QString guaci();
 
     Yao *getYao(int index);
 
