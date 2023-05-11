@@ -24,10 +24,12 @@ QRectF Yao::boundingRect() const
 
 void Yao::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    qDebug() << "Yao::paint():" << m_index;
     Q_UNUSED(widget);
     QColor fillColor = m_color;
     if (option->state & QStyle::State_MouseOver){
         fillColor = QColor("#c78c64");
+        emit yaoHovered(5 - m_index); //爻是从下往上数
     }
 
     //阴爻
@@ -60,6 +62,7 @@ void Yao::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     emit yaoChanged(m_index, newStatus);
 }
+
 
 int Yao::getIndex() const
 {

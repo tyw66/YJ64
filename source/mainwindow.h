@@ -22,9 +22,10 @@ public:
 
 private slots:
     void onDiagramChanged();
+    void onShowYaoci(int index);
 
 private:
-    void initBackground();
+    void initUI();
     void initDiagrams();
 
 

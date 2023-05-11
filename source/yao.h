@@ -21,12 +21,14 @@ protected:
 
 signals:
     void yaoChanged(int,bool);
-
+    void yaoHovered(int);
 
 private:
     QColor m_color;
     bool m_broken;
     int m_index;
+
+
 
 };
 

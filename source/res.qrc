@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>bg.jpg</file>
-        <file>data.txt</file>
+        <file alias="wallpaper">bg.jpg</file>
+        <file alias="dataBasic">data.txt</file>
+        <file alias="dataYaoci">data_yaoci.txt</file>
     </qresource>
 </RCC>

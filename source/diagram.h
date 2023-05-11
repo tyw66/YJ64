@@ -39,18 +39,19 @@ public:
     void change(const QString& code);
     QString name();
     QString guaci();
+    QString yaoci(int index);
 
     Yao *getYao(int index);
 
 private slots:
     void onYaoChanged(int index, bool broken);
 
-
 private:
     void internalUpdate();
 
 signals:
     void diagramChanged();
+    void yaoHoverd(int);
 
 private:
     Diagram8 m_up;

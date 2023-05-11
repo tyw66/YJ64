@@ -23,6 +23,8 @@ Diagram::Diagram()
         m_yaos[i]->setIndex(i);
         connect(m_yaos[i],SIGNAL(yaoChanged(int,bool)),
                 this,SLOT(onYaoChanged(int,bool)));
+        connect(m_yaos[i],SIGNAL(yaoHovered(int)),
+                this,SIGNAL(yaoHoverd(int)));
 
         m_data.push_back(1);
     }
@@ -160,6 +162,15 @@ QString Diagram::guaci()
     return guaci;
 }
 
+QString Diagram::yaoci(int index)
+{
+    if(index < 0 || index > 5){
+        return "";
+    }
+    QString yaoci = Database::inst()->queryDiagramYao(m_up,m_down,index);
+    return yaoci;
+}
+
 Yao* Diagram::getYao(int index)
 {
     if(index < 0){
@@ -177,6 +188,8 @@ void Diagram::onYaoChanged(int index, bool broken)
     internalUpdate();
     emit diagramChanged();
 }
+
+
 
 //用m_data更新m_up和m_down
 void Diagram::internalUpdate()

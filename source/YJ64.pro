@@ -31,3 +31,5 @@ RESOURCES += \
 
 TRANSLATIONS+=\
     zh_CN.ts
+
+RC_ICONS = $$PWD/app.ico

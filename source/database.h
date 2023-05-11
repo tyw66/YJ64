@@ -18,10 +18,12 @@ class Database
 {
 public:
     static Database* inst();
-    void read(const QString& fileName);
+    void readBasic(const QString& fileName);
+    void readYaoci(const QString& fileName);
 
     QString queryDiagramName(Diagram8 up, Diagram8 down);  //查询名称
     QString queryDiagramIntro(Diagram8 up, Diagram8 down); //查询卦辞
+    QString queryDiagramYao(Diagram8 up, Diagram8 down, int index);//查询爻辞
 
 
 private:
